@@ -17,6 +17,7 @@
 
 # misc
 .DS_Store
+.idea
 *.pem
 
 # debug
@@ -35,3 +36,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# lockfiles
+yarn.lock
+package-lock.json
