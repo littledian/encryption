@@ -5,6 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "prepare": "husky install",
     "eslint": "eslint \"**/*.@(ts|tsx|js|jsx)\"",
     "stylelint": "stylelint \"**/*.@(css|scss|sass)\""
   },
@@ -37,11 +38,6 @@
     "stylelint-config-standard": "^24.0.0",
     "stylelint-scss": "^4.0.0",
     "typescript": "^4.5.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "**/**.{js,jsx,ts,tsx}": [
