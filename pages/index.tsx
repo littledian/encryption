@@ -1,64 +1,21 @@
-import type { NextPage } from 'next';
-
-import { Button, Input, message, Typography } from 'antd';
-import { useState } from 'react';
-import http from '../utils/http';
-
+import React from 'react';
+import Link from 'next/link';
+import { Typography } from 'antd';
 import styles from '../styles/Home.module.scss';
 
-const Home: NextPage = () => {
-  const [inputVal, setInputVal] = useState('');
-  const [outputVal, setOutputVal] = useState('');
-
-  const handleEncrypt = async () => {
-    try {
-      const res = await http.post('/api/encrypt', { data: inputVal });
-      setOutputVal(res);
-    } catch (e: any) {
-      message.error(e.message);
-    }
-  };
-
-  const handleDecrypt = async () => {
-    try {
-      const res = await http.post('/api/decrypt', { data: inputVal });
-      setOutputVal(res);
-    } catch (e: any) {
-      message.error(e.message);
-    }
-  };
-
-  const handleClear = () => {
-    setInputVal('');
-    setOutputVal('');
-  };
-
+export default function Home() {
   return (
     <div className={styles.root}>
-      <Typography.Title className={styles.title}>编码转换</Typography.Title>
-      <Input.TextArea
-        className={styles.input}
-        value={inputVal}
-        onChange={(e) => setInputVal(e.target.value)}
-      />
-      <div className={styles.actions}>
-        <Button className={styles.btn} onClick={handleEncrypt}>
-          加密
-        </Button>
-        <Button className={styles.btn} onClick={handleDecrypt}>
-          解密
-        </Button>
-        <Button className={styles.btn} onClick={handleClear}>
-          清空
-        </Button>
+      <div className={styles.cell}>
+        <Link href="/encryption">
+          <Typography.Link>加解密</Typography.Link>
+        </Link>
       </div>
-      <Input.TextArea
-        className={styles.input}
-        value={outputVal}
-        onChange={(e) => setOutputVal(e.target.value)}
-      />
+      <div className={styles.cell}>
+        <Link href="/base64">
+          <Typography.Link>Base64图片转换</Typography.Link>
+        </Link>
+      </div>
     </div>
   );
-};
-
-export default Home;
+}
