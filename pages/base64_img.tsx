@@ -1,16 +1,21 @@
 import type { NextPage } from 'next';
 
 import { Button, Input, Typography } from 'antd';
-import { ChangeEvent, useCallback, useRef, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { base64ToFile, blobToBase64, downloadBlob } from '../utils/file';
 
-import styles from '../styles/Base64.module.scss';
+import styles from '../styles/Base64Img.module.scss';
 
 const Encryption: NextPage = () => {
   const [inputValue, setInputValue] = useState('');
+  const inputValueRef = useRef('');
+  useEffect(() => {
+    inputValueRef.current = inputValue;
+  }, [inputValue]);
   const [url, setUrl] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const fileRef = useRef<File | null>(null);
+
   const handleInputChange = useCallback((value: string) => {
     setInputValue(value);
   }, []);
@@ -19,36 +24,32 @@ const Encryption: NextPage = () => {
     fileInputRef.current.click();
   }, []);
   const handleDownloadFile = useCallback(async () => {
-    if (!fileRef.current) return;
-    downloadBlob(fileRef.current, fileRef.current.name);
-  }, []);
-  const handleTransBase64ToFile = useCallback(async () => {
-    const file = await base64ToFile(inputValue, 'base64_file');
-    fileRef.current = file;
-    setUrl(await blobToBase64(file));
-  }, [inputValue]);
-  const handleTransFileToBase64 = useCallback(async () => {
-    if (!fileRef.current) return;
-    const s = await blobToBase64(fileRef.current);
-    setInputValue(s);
-    setUrl(s);
+    if (!inputValueRef.current) return;
+    const match = inputValueRef.current.match(/^data:image\/(.+);base64,.+/);
+    const file = await base64ToFile(inputValueRef.current, `download.${match ? match[1] : 'png'}`);
+    downloadBlob(file, file.name);
   }, []);
   const handleFileChange = useCallback(async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
     fileRef.current = file;
-    setUrl(await blobToBase64(fileRef.current));
+    const base64 = await blobToBase64(fileRef.current);
+    setUrl(base64);
+    setInputValue(base64);
   }, []);
 
   return (
     <div className={styles.root}>
-      <Typography.Title className={styles.title}>Base64转换</Typography.Title>
-      <img src={url} alt="" height={200} />
+      <Typography.Title className={styles.title}>Base64图片转换</Typography.Title>
+      <div className={styles.imgWrap} style={{ borderWidth: url ? 0 : 1 }}>
+        <img src={url} alt="" className={styles.img} />
+      </div>
       <div className={styles.actions}>
         <input
           className={styles.fileInput}
           ref={fileInputRef}
           type="file"
+          accept="image/png, image/jpeg, image/jpg"
           onChange={handleFileChange}
           multiple={false}
         />
@@ -57,12 +58,6 @@ const Encryption: NextPage = () => {
         </Button>
         <Button className={styles.btn} onClick={handleDownloadFile}>
           下载文件
-        </Button>
-        <Button className={styles.btn} onClick={handleTransFileToBase64}>
-          转换成Base64
-        </Button>
-        <Button className={styles.btn} onClick={handleTransBase64ToFile}>
-          转换成文件
         </Button>
       </div>
       <Input.TextArea
