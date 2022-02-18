@@ -12,7 +12,7 @@ export default function Home() {
         </Link>
       </div>
       <div className={styles.cell}>
-        <Link href="/base64">
+        <Link href="/base64_img">
           <Typography.Link>Base64图片转换</Typography.Link>
         </Link>
       </div>
