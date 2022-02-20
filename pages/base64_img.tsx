@@ -54,10 +54,10 @@ const Encryption: NextPage = () => {
           multiple={false}
         />
         <Button className={styles.btn} onClick={handleUploadFile}>
-          上传文件
+          上传图片
         </Button>
         <Button className={styles.btn} onClick={handleDownloadFile}>
-          下载文件
+          下载图片
         </Button>
       </div>
       <Input.TextArea
