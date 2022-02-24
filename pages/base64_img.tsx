@@ -2,8 +2,9 @@ import type { NextPage } from 'next';
 
 import { Button, Input, Typography } from 'antd';
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { base64ToFile, blobToBase64, downloadBlob } from '../utils/file';
+import Head from 'next/head';
 
+import { base64ToFile, blobToBase64, downloadBlob } from '../utils/file';
 import styles from '../styles/Base64Img.module.scss';
 
 const Encryption: NextPage = () => {
@@ -40,6 +41,9 @@ const Encryption: NextPage = () => {
 
   return (
     <div className={styles.root}>
+      <Head>
+        <title>工具 - Base64图片转换</title>
+      </Head>
       <Typography.Title className={styles.title}>Base64图片转换</Typography.Title>
       <div className={styles.imgWrap} style={{ borderWidth: url ? 0 : 1 }}>
         <img src={url} alt="" className={styles.img} />

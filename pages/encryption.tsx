@@ -1,7 +1,9 @@
 import type { NextPage } from 'next';
 
 import { Button, Input, message, Typography } from 'antd';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import Head from 'next/head';
+
 import http from '../utils/http';
 
 import styles from '../styles/Encryption.module.scss';
@@ -35,6 +37,9 @@ const Encryption: NextPage = () => {
 
   return (
     <div className={styles.root}>
+      <Head>
+        <title>工具 - 加解密</title>
+      </Head>
       <Typography.Title className={styles.title}>加解密</Typography.Title>
       <Input.TextArea
         className={styles.input}
