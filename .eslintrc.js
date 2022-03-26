@@ -5,9 +5,9 @@ module.exports = {
     // Your environments (which contains several predefined global variables)
     //
     browser: true,
-    node: true
+    node: true,
     // mocha: true,
-    // jest: true,
+    jest: true
     // jquery: true
   },
   globals: {
@@ -28,7 +28,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['next.config.js'],
+      files: ['next.config.js', 'jest.config.js'],
       rules: {
         '@typescript-eslint/no-require-imports': ['off']
       }
