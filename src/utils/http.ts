@@ -1,4 +1,8 @@
-import axios, { Axios, AxiosInstance, AxiosProxyConfig, AxiosRequestConfig } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosProxyConfig,
+  AxiosRequestConfig
+} from 'axios';
 
 export class Http {
   private instance: AxiosInstance;
@@ -7,7 +11,9 @@ export class Http {
     this.instance = axios.create();
     this.instance.interceptors.response.use(
       (res) =>
-        res.data.c === 0 ? Promise.resolve(res.data.d) : Promise.reject(new Error(res.data.m)),
+        res.data.c === 0
+          ? Promise.resolve(res.data.d)
+          : Promise.reject(new Error(res.data.m)),
       (error) => Promise.reject(error)
     );
   }
@@ -16,11 +22,19 @@ export class Http {
     return this.instance.get(url, config);
   }
 
-  post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+  post<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     return this.instance.post(url, data, config);
   }
 
-  put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+  put<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     return this.instance.put(url, data, config);
   }
 

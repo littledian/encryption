@@ -1,20 +1,18 @@
-import type { NextPage } from 'next';
-
+import { useState } from 'react';
 import { Button, Input, message, Typography } from 'antd';
-import React, { useState } from 'react';
-import Head from 'next/head';
 
-import http from '../utils/http';
+import Title from '@/components/Title';
+import http from '@/utils/http';
 
-import styles from '../styles/Encryption.module.scss';
+import styles from './index.module.scss';
 
-const Encryption: NextPage = () => {
+export default function Encryption() {
   const [inputVal, setInputVal] = useState('');
   const [outputVal, setOutputVal] = useState('');
 
   const handleEncrypt = async () => {
     try {
-      const res = await http.post('/api/encrypt', { data: inputVal });
+      const res = await http.post('/api/utils/encrypt', { data: inputVal });
       setOutputVal(res);
     } catch (e: any) {
       message.error(e.message);
@@ -23,7 +21,7 @@ const Encryption: NextPage = () => {
 
   const handleDecrypt = async () => {
     try {
-      const res = await http.post('/api/decrypt', { data: inputVal });
+      const res = await http.post('/api/utils/decrypt', { data: inputVal });
       setOutputVal(res);
     } catch (e: any) {
       message.error(e.message);
@@ -37,9 +35,7 @@ const Encryption: NextPage = () => {
 
   return (
     <div className={styles.root}>
-      <Head>
-        <title>工具 - 加解密</title>
-      </Head>
+      <Title>工具 - 加解密</Title>
       <Typography.Title className={styles.title}>加解密</Typography.Title>
       <Input.TextArea
         className={styles.input}
@@ -64,6 +60,4 @@ const Encryption: NextPage = () => {
       />
     </div>
   );
-};
-
-export default Encryption;
+}

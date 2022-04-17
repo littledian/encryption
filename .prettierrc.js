@@ -1,7 +1,7 @@
 module.exports = {
-  // max 100 characters per line
-  printWidth: 100,
-  // use 4 spaces for indentation
+  // max 80 characters per line
+  printWidth: 80,
+  // use 2 spaces for indentation
   tabWidth: 2,
   // use spaces instead of indentations
   useTabs: false,

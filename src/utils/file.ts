@@ -17,7 +17,10 @@ export function downloadBlob(blob: Blob, fileName: string) {
   }, 100);
 }
 
-export async function base64ToFile(base64: string, fileName: string): Promise<File> {
+export async function base64ToFile(
+  base64: string,
+  fileName: string
+): Promise<File> {
   const res = await fetch(base64);
   const blob = await res.blob();
   return new File([blob], fileName);

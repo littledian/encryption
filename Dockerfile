@@ -1,4 +1,4 @@
-FROM node:16.13.0-alpine3.12 as builder
+FROM node:16.14.2-alpine3.15 as builder
 
 WORKDIR /app
 COPY . .
@@ -7,16 +7,11 @@ RUN npm set-script prepare ""
 RUN npm install
 RUN npm run build
 
-FROM node:16.13.0-alpine3.12
+FROM nginx:1.21.6
 MAINTAINER littledian 1197434548@qq.com
 
 WORKDIR /app
-COPY . .
-COPY --from=builder /app/.next ./.next
-
-RUN npm set-script prepare ""
-RUN npm install --production
-
-CMD ["npm", "start"]
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/build /etc/nginx/html
 
 EXPOSE 3000
