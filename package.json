@@ -1,6 +1,5 @@
 {
-  "name": "temp",
-  "version": "0.1.0",
+  "name": "tools",
   "private": true,
   "dependencies": {
     "antd": "^4.19.5",
