@@ -15,14 +15,14 @@ jobs:
           user: ${{ secrets.REMOTE_USERNAME }}
           password: ${{ secrets.REMOTE_PASSWORD }}
           commands: |
-            have=$(docker inspect --format='{{.Name}}' $(docker ps -aq) | grep tools  | cut -d"/" -f2)
+            have=$(docker inspect --format='{{.Name}}' $(docker ps -aq) | grep tools-web  | cut -d"/" -f2)
             if [[ "$have" == tools ]]; then \
-              docker container stop tools; \
-              docker container rm tools; \
+              docker container stop tools-web; \
+              docker container rm tools-web; \
             fi
             docker rmi registry.cn-hongkong.aliyuncs.com/littledian/tools:latest
             docker run \
               -p 3000:3000 \
-              --name tools \
+              --name tools-web \
               --restart always \
               -d registry.cn-hongkong.aliyuncs.com/littledian/tools:latest
