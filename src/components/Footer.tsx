@@ -1,5 +1,5 @@
-import React from 'react';
 import { Typography } from 'antd';
+
 import styles from './Footer.module.scss';
 
 export default function Footer() {

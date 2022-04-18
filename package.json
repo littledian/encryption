@@ -5,6 +5,7 @@
     "antd": "^4.19.5",
     "axios": "^0.26.1",
     "dayjs": "^1.11.1",
+    "eslint-plugin-import": "^2.26.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",

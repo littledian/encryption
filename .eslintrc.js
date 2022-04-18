@@ -1,6 +1,6 @@
 module.exports = {
   extends: ['alloy', 'alloy/react', 'alloy/typescript', 'prettier'],
-  plugins: ['prettier', 'react-hooks'],
+  plugins: ['prettier', 'react-hooks', 'import'],
   env: {
     // Your environments (which contains several predefined global variables)
     //
@@ -24,7 +24,31 @@ module.exports = {
     ],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    'prettier/prettier': 'error'
+    'prettier/prettier': 'error',
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'unknown',
+          'parent',
+          'sibling',
+          'index',
+          'object',
+          'type'
+        ],
+        'newlines-between': 'always',
+        pathGroups: [
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before'
+          }
+        ]
+      }
+    ]
   },
   overrides: [
     {
