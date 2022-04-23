@@ -15,6 +15,11 @@ export default function Home() {
         </Link>
       </div>
       <div className={styles.cell}>
+        <Link to="/md5" className="ant-typography">
+          MD5
+        </Link>
+      </div>
+      <div className={styles.cell}>
         <Link to="/base64_img" className="ant-typography">
           Base64图片转换
         </Link>
