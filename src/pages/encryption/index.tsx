@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Button, Input, message, Typography } from 'antd';
+import { Button, TextField, Typography } from '@mui/material';
+import { success, error } from '@/utils/message';
 
 import Title from '@/components/Title';
 import http from '@/utils/http';
@@ -14,8 +15,9 @@ export default function Encryption() {
     try {
       const res = await http.post('/api/utils/encrypt', { data: inputVal });
       setOutputVal(res);
+      success('xxx');
     } catch (e: any) {
-      message.error(e.message);
+      error(e.message);
     }
   };
 
@@ -24,7 +26,7 @@ export default function Encryption() {
       const res = await http.post('/api/utils/decrypt', { data: inputVal });
       setOutputVal(res);
     } catch (e: any) {
-      message.error(e.message);
+      error(e.message);
     }
   };
 
@@ -36,24 +38,36 @@ export default function Encryption() {
   return (
     <div className={styles.root}>
       <Title>工具 - 加解密</Title>
-      <Typography.Title className={styles.title}>加解密</Typography.Title>
-      <Input.TextArea
+      <Typography className={styles.title}>加解密</Typography>
+      <TextField
+        multiline
+        rows={7}
         className={styles.input}
         value={inputVal}
         onChange={(e) => setInputVal(e.target.value)}
       />
       <div className={styles.actions}>
-        <Button className={styles.btn} onClick={handleEncrypt}>
+        <Button
+          variant="outlined"
+          className={styles.btn}
+          onClick={handleEncrypt}
+        >
           加密
         </Button>
-        <Button className={styles.btn} onClick={handleDecrypt}>
+        <Button
+          variant="outlined"
+          className={styles.btn}
+          onClick={handleDecrypt}
+        >
           解密
         </Button>
-        <Button className={styles.btn} onClick={handleClear}>
+        <Button variant="outlined" className={styles.btn} onClick={handleClear}>
           清空
         </Button>
       </div>
-      <Input.TextArea
+      <TextField
+        multiline
+        rows={7}
         className={styles.input}
         value={outputVal}
         onChange={(e) => setOutputVal(e.target.value)}

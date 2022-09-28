@@ -22,6 +22,8 @@ module.exports = {
         accessibility: 'no-public'
       }
     ],
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/consistent-type-assertions': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'prettier/prettier': 'error',
@@ -39,7 +41,6 @@ module.exports = {
           'object',
           'type'
         ],
-        'newlines-between': 'always',
         pathGroups: [
           {
             pattern: 'react',

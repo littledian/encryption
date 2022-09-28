@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Button, Input, message, Typography } from 'antd';
+import { Button, TextField, Typography } from '@mui/material';
+import { error } from '@/utils/message';
 
 import Title from '@/components/Title';
 import http from '@/utils/http';
@@ -15,7 +16,7 @@ export default function Encryption() {
       const res = await http.post('/api/utils/md5', { data: inputVal });
       setOutputVal(res);
     } catch (e: any) {
-      message.error(e.message);
+      error(e.message);
     }
   };
 
@@ -27,21 +28,32 @@ export default function Encryption() {
   return (
     <div className={styles.root}>
       <Title>工具 - MD5</Title>
-      <Typography.Title className={styles.title}>MD5</Typography.Title>
-      <Input.TextArea
+      <Typography className={styles.title}>MD5</Typography>
+      <TextField
+        multiline
+        rows={7}
         className={styles.input}
         value={inputVal}
         onChange={(e) => setInputVal(e.target.value)}
       />
       <div className={styles.actions}>
-        <Button className={styles.btn} onClick={handleEncrypt}>
+        <Button
+          variant="outlined"
+          className={styles.btn}
+          onClick={handleEncrypt}
+        >
           MD5
         </Button>
-        <Button className={styles.btn} onClick={handleClear}>
+        <Button variant="outlined" className={styles.btn} onClick={handleClear}>
           清空
         </Button>
       </div>
-      <Input.TextArea className={styles.input} value={outputVal} readOnly />
+      <TextField
+        rows={7}
+        multiline
+        className={styles.input}
+        value={outputVal}
+      />
     </div>
   );
 }

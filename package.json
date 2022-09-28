@@ -2,7 +2,11 @@
   "name": "tools",
   "private": true,
   "dependencies": {
-    "antd": "^4.23.2",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.10.6",
+    "@mui/material": "^5.10.7",
     "axios": "^0.27.2",
     "dayjs": "^1.11.5",
     "eslint-plugin-import": "^2.26.0",

@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { Button, Input, Typography } from 'antd';
+import { Button, TextField, Typography } from '@mui/material';
 
 import Title from '@/components/Title';
 import { base64ToFile, blobToBase64, downloadBlob } from '@/utils/file';
@@ -47,9 +47,7 @@ export default function Base64Img() {
   return (
     <div className={styles.root}>
       <Title>工具 - Base64图片转换</Title>
-      <Typography.Title className={styles.title}>
-        Base64图片转换
-      </Typography.Title>
+      <Typography className={styles.title}>Base64图片转换</Typography>
       <div className={styles.imgWrap} style={{ borderWidth: url ? 0 : 1 }}>
         <img src={url} alt="" className={styles.img} />
       </div>
@@ -62,14 +60,24 @@ export default function Base64Img() {
           onChange={handleFileChange}
           multiple={false}
         />
-        <Button className={styles.btn} onClick={handleUploadFile}>
+        <Button
+          variant="outlined"
+          className={styles.btn}
+          onClick={handleUploadFile}
+        >
           上传图片
         </Button>
-        <Button className={styles.btn} onClick={handleDownloadFile}>
+        <Button
+          variant="contained"
+          className={styles.btn}
+          onClick={handleDownloadFile}
+        >
           下载图片
         </Button>
       </div>
-      <Input.TextArea
+      <TextField
+        multiline
+        rows={7}
         className={styles.input}
         value={inputValue}
         onChange={(e) => handleInputChange(e.target.value)}
