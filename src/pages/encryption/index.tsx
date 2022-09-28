@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, TextField, Typography } from '@mui/material';
-import { success, error } from '@/utils/message';
+import { error } from '@/utils/message';
 
 import Title from '@/components/Title';
 import http from '@/utils/http';
@@ -15,7 +15,6 @@ export default function Encryption() {
     try {
       const res = await http.post('/api/utils/encrypt', { data: inputVal });
       setOutputVal(res);
-      success('xxx');
     } catch (e: any) {
       error(e.message);
     }
