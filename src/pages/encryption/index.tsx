@@ -37,7 +37,9 @@ export default function Encryption() {
   return (
     <div className={styles.root}>
       <Title>工具 - 加解密</Title>
-      <Typography className={styles.title}>加解密</Typography>
+      <Typography variant="h5" className={styles.title}>
+        加解密
+      </Typography>
       <TextField
         multiline
         rows={7}

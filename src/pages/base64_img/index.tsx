@@ -47,7 +47,9 @@ export default function Base64Img() {
   return (
     <div className={styles.root}>
       <Title>工具 - Base64图片转换</Title>
-      <Typography className={styles.title}>Base64图片转换</Typography>
+      <Typography variant="h5" className={styles.title}>
+        Base64图片转换
+      </Typography>
       <div className={styles.imgWrap} style={{ borderWidth: url ? 0 : 1 }}>
         <img src={url} alt="" className={styles.img} />
       </div>
@@ -68,7 +70,7 @@ export default function Base64Img() {
           上传图片
         </Button>
         <Button
-          variant="contained"
+          variant="outlined"
           className={styles.btn}
           onClick={handleDownloadFile}
         >

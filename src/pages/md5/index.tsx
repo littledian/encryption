@@ -28,7 +28,9 @@ export default function Encryption() {
   return (
     <div className={styles.root}>
       <Title>工具 - MD5</Title>
-      <Typography className={styles.title}>MD5</Typography>
+      <Typography variant="h5" className={styles.title}>
+        MD5
+      </Typography>
       <TextField
         multiline
         rows={7}
