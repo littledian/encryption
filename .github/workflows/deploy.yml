@@ -22,7 +22,7 @@ jobs:
             fi
             docker rmi registry.cn-hongkong.aliyuncs.com/littledian/tools:latest
             docker run \
-              -p 3000:3000 \
+              -p 3001:3001 \
               --name tools-web \
               --restart always \
               -d registry.cn-hongkong.aliyuncs.com/littledian/tools:latest
